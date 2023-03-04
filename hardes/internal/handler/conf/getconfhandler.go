@@ -1,23 +1,23 @@
-package handler
+package conf
 
 import (
 	"net/http"
 
 	"github.com/zeromicro/go-zero/rest/httpx"
-	"hardes/internal/logic"
+	"hardes/internal/logic/conf"
 	"hardes/internal/svc"
 	"hardes/internal/types"
 )
 
-func getConfHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
+func GetConfHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		var req types.SaveReq
+		var req types.GetConfReq
 		if err := httpx.Parse(r, &req); err != nil {
 			httpx.ErrorCtx(r.Context(), w, err)
 			return
 		}
 
-		l := logic.NewGetConfLogic(r.Context(), svcCtx)
+		l := conf.NewGetConfLogic(r.Context(), svcCtx)
 		resp, err := l.GetConf(&req)
 		if err != nil {
 			httpx.ErrorCtx(r.Context(), w, err)

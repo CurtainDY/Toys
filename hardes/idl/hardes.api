@@ -6,6 +6,8 @@ import (
 @server(
 	jwt:			Auth
 	middleware: 	AuthMiddleware
+	prefix:			api
+	group:			conf
 )
 
 service hardes-api {

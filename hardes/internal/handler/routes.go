@@ -4,6 +4,7 @@ package handler
 import (
 	"net/http"
 
+	conf "hardes/internal/handler/conf"
 	"hardes/internal/svc"
 
 	"github.com/zeromicro/go-zero/rest"
@@ -17,15 +18,16 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				{
 					Method:  http.MethodPost,
 					Path:    "/hardes/v1/conf/:id",
-					Handler: saveHandler(serverCtx),
+					Handler: conf.SaveHandler(serverCtx),
 				},
 				{
 					Method:  http.MethodGet,
 					Path:    "/hardes/v1/conf/:id",
-					Handler: getConfHandler(serverCtx),
+					Handler: conf.GetConfHandler(serverCtx),
 				},
 			}...,
 		),
 		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
+		rest.WithPrefix("/api"),
 	)
 }

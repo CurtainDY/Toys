@@ -1,15 +1,15 @@
-package handler
+package conf
 
 import (
 	"net/http"
 
 	"github.com/zeromicro/go-zero/rest/httpx"
-	"hardes/internal/logic"
+	"hardes/internal/logic/conf"
 	"hardes/internal/svc"
 	"hardes/internal/types"
 )
 
-func saveHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
+func SaveHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var req types.SaveReq
 		if err := httpx.Parse(r, &req); err != nil {
@@ -17,7 +17,7 @@ func saveHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 			return
 		}
 
-		l := logic.NewSaveLogic(r.Context(), svcCtx)
+		l := conf.NewSaveLogic(r.Context(), svcCtx)
 		resp, err := l.Save(&req)
 		if err != nil {
 			httpx.ErrorCtx(r.Context(), w, err)
