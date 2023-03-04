@@ -1,0 +1,12 @@
+type (
+	SaveReq {
+	}
+
+	SaveResp {
+	}
+)
+
+service hardes-api {
+	@handler hardes
+	post /hardes/v1/conf (SaveReq) returns (SaveResp)
+}
