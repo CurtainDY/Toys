@@ -1,3 +1,7 @@
 Name: hardes-api
 Host: 0.0.0.0
 Port: 8888
+
+Auth:
+  AccessSecret: d5300164750b1e078bc40aba9538c44c
+  AccessExpire: 360

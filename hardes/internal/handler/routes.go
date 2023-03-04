@@ -11,12 +11,21 @@ import (
 
 func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 	server.AddRoutes(
-		[]rest.Route{
-			{
-				Method:  http.MethodPost,
-				Path:    "/hardes/v1/conf",
-				Handler: hardesHandler(serverCtx),
-			},
-		},
+		rest.WithMiddlewares(
+			[]rest.Middleware{serverCtx.AuthMiddleware},
+			[]rest.Route{
+				{
+					Method:  http.MethodPost,
+					Path:    "/hardes/v1/conf/:id",
+					Handler: saveHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodGet,
+					Path:    "/hardes/v1/conf/:id",
+					Handler: getConfHandler(serverCtx),
+				},
+			}...,
+		),
+		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
 	)
 }

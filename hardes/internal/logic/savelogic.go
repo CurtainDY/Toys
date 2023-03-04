@@ -9,21 +9,21 @@ import (
 	"github.com/zeromicro/go-zero/core/logx"
 )
 
-type HardesLogic struct {
+type SaveLogic struct {
 	logx.Logger
 	ctx    context.Context
 	svcCtx *svc.ServiceContext
 }
 
-func NewHardesLogic(ctx context.Context, svcCtx *svc.ServiceContext) *HardesLogic {
-	return &HardesLogic{
+func NewSaveLogic(ctx context.Context, svcCtx *svc.ServiceContext) *SaveLogic {
+	return &SaveLogic{
 		Logger: logx.WithContext(ctx),
 		ctx:    ctx,
 		svcCtx: svcCtx,
 	}
 }
 
-func (l *HardesLogic) Hardes(req *types.SaveReq) (resp *types.SaveResp, err error) {
+func (l *SaveLogic) Save(req *types.SaveReq) (resp *types.SaveResp, err error) {
 	// todo: add your logic here and delete this line
 
 	return

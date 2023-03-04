@@ -1,0 +1,11 @@
+type (
+	SaveReq {
+		Token 	string `json:"token,required"`
+		Content string `json:"content"`
+	}
+
+	SaveResp {
+		ErrNo 	int 	`json:"errno"`
+		ErrMsg 	string 	`json:"errmsg"`
+	}
+)

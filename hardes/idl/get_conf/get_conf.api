@@ -1,0 +1,16 @@
+type (
+	GetConfReq {
+        ID      string  `path:"id"`
+		Token 	string  `json:"token,required"`
+	}
+
+	GetConfResp {
+		ErrNo 	int 	    `json:"errno"`
+		ErrMsg 	string 	    `json:"errmsg"`
+        Data    ConfData    `json:"data"`
+	}
+
+    ConfData {
+
+    }
+)

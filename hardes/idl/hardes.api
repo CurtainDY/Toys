@@ -1,12 +1,17 @@
-type (
-	SaveReq {
-	}
+import (
+	"get_conf/get_conf.api"
+	"save/save.api"
+)
 
-	SaveResp {
-	}
+@server(
+	jwt:			Auth
+	middleware: 	AuthMiddleware
 )
 
 service hardes-api {
-	@handler hardes
-	post /hardes/v1/conf (SaveReq) returns (SaveResp)
+	@handler save
+	post /hardes/v1/conf/:id (SaveReq) returns (SaveResp)
+	
+	@handler getConf
+	get /hardes/v1/conf/:id (GetConfReq) returns (GetConfResp)
 }
